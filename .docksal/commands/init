@@ -1,0 +1,8 @@
+#!/bin/bash
+
+cp ${PROJECT_ROOT}/.docksal/settings.local.php ${PROJECT_ROOT}/web/sites/default/settings.local.php
+
+fin up
+fin exec "composer install"
+cd web
+fin drush si config_installer config_installer_sync_configure_form.sync_directory=../config/sync -y

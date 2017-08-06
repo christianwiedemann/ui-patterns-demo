@@ -33,24 +33,13 @@
 assert_options(ASSERT_ACTIVE, TRUE);
 \Drupal\Component\Assertion\Handle::register();
 
-/**
- * Enable local development services.
- */
-$settings['container_yamls'][] = DRUPAL_ROOT . '/sites/development.services.yml';
-
-/**
- * Show all error messages, with backtrace information.
- *
- * In case the error level could not be fetched from the database, as for
- * example the database connection failed, we rely only on this value.
- */
 $config['system.logging']['error_level'] = 'verbose';
 
 /**
  * Disable CSS and JS aggregation.
  */
-$config['system.performance']['css']['preprocess'] = FALSE;
-$config['system.performance']['js']['preprocess'] = FALSE;
+# $config['system.performance']['css']['preprocess'] = FALSE;
+# $config['system.performance']['js']['preprocess'] = FALSE;
 
 /**
  * Disable the render cache (this includes the page cache).
@@ -65,14 +54,6 @@ $config['system.performance']['js']['preprocess'] = FALSE;
  * Do not use this setting until after the site is installed.
  */
 # $settings['cache']['bins']['render'] = 'cache.backend.null';
-
-/**
- * Disable caching for migrations.
- *
- * Uncomment the code below to only store migrations in memory and not in the
- * database. This makes it easier to develop custom migrations.
- */
-# $settings['cache']['bins']['discovery_migration'] = 'cache.backend.memory';
 
 /**
  * Disable Dynamic Page Cache.
@@ -90,7 +71,7 @@ $config['system.performance']['js']['preprocess'] = FALSE;
  * During development it can be useful to install test extensions for debugging
  * purposes.
  */
-$settings['extension_discovery_scan_tests'] = TRUE;
+# $settings['extension_discovery_scan_tests'] = FALSE;
 
 /**
  * Enable access to rebuild.php.
@@ -100,7 +81,7 @@ $settings['extension_discovery_scan_tests'] = TRUE;
  * be gained by generating a query string from rebuild_token_calculator.sh and
  * using these parameters in a request to rebuild.php.
  */
-$settings['rebuild_access'] = TRUE;
+# $settings['rebuild_access'] = TRUE;
 
 /**
  * Skip file system permissions hardening.
@@ -112,4 +93,49 @@ $settings['rebuild_access'] = TRUE;
  * user pulling in the changes won't have permissions to modify files in the
  * directory.
  */
-$settings['skip_permissions_hardening'] = TRUE;
+$settings['skip_permissions_hardening'] = FALSE;
+
+/**
+ * Access control for update.php script.
+ *
+ * If you are updating your Drupal installation using the update.php script but
+ * are not logged in using either an account with the "Administer software
+ * updates" permission or the site maintenance account (the account that was
+ * created during installation), you will need to modify the access check
+ * statement below. Change the FALSE to a TRUE to disable the access check.
+ * After finishing the upgrade, be sure to open this file again and change the
+ * TRUE back to a FALSE!
+ */
+# $settings['update_free_access'] = FALSE;
+
+
+# Docker DB connection settings.
+$databases['default']['default'] = array (
+  'database' => 'default',
+  'username' => 'user',
+  'password' => 'user',
+  'host' => 'db',
+  'driver' => 'mysql',
+);
+
+# Workaround for permission issues with NFS shares
+$settings['file_chmod_directory'] = 0777;
+$settings['file_chmod_file'] = 0666;
+
+# File system settings.
+$config['system.file']['path']['temporary'] = '/tmp';
+
+# Reverse proxy configuration (Docksal's vhost-proxy)
+if (PHP_SAPI !== 'cli') {
+  $settings['reverse_proxy'] = TRUE;
+  $settings['reverse_proxy_addresses'] = array($_SERVER['REMOTE_ADDR']);
+  // HTTPS behind reverse-proxy
+  if (
+    isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https' &&
+    !empty($settings['reverse_proxy']) && in_array($_SERVER['REMOTE_ADDR'], $settings['reverse_proxy_addresses'])
+  ) {
+    $_SERVER['HTTPS'] = 'on';
+    // This is hardcoded because there is no header specifying the original port.
+    $_SERVER['SERVER_PORT'] = 443;
+  }
+}

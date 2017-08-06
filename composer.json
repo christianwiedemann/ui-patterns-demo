@@ -13,27 +13,29 @@
     {
       "type": "composer",
       "url": "https://packages.drupal.org/8"
+    },
+    {
+      "type": "vcs",
+      "url": "git@github.com:christianwiedemann/ui_patterns.git"
     }
   ],
   "require": {
     "composer/installers": "^1.2",
     "drupal-composer/drupal-scaffold": "^2.2",
     "cweagans/composer-patches": "~1.0",
-    "drupal/core": "~8.0",
-    "drush/drush": "~8.0",
+    "drupal/core": "~8.3",
     "drupal/config_installer": "1.4",
     "drupal/console": "~1.0",
-    "drupal/layout_plugin": "~1",
-    "drupal/ds": "~2",
+    "drupal/ds": "~3",
     "drupal/field_group": "~1",
     "drupal/coffee": "~1",
-    "drupal/panels": "~3",
+    "drupal/panels": "~4",
     "drupal/features": "3.2",
-    "drupal/page_manager": "~1",
+    "drupal/page_manager": "~4",
     "drupal/paragraphs": "~1",
     "drupal/token": "~1",
     "drupal/bootstrap": "3.1",
-    "drupal/ui_patterns": "1.0-beta6"
+    "drupal/ui_patterns": "1.x-dev"
   },
   "require-dev": {
     "behat/mink": "~1.7",

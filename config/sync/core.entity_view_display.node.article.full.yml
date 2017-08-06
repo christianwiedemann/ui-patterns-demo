@@ -121,6 +121,7 @@ content:
             lb-col: false
             classes: {  }
     label: hidden
+    region: ds_content
   field_image:
     type: image
     weight: 1
@@ -136,6 +137,7 @@ content:
             lb-col: false
             classes: {  }
     label: hidden
+    region: ds_content
   field_links:
     type: link
     weight: 4
@@ -164,6 +166,7 @@ content:
                 weight: 1
                 plugin: ds_field_template
                 source: field_links__title
+    region: ds_content
   field_paragraphs:
     type: entity_reference_revisions_entity_view
     weight: 3
@@ -172,6 +175,7 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
+    region: ds_content
   field_pictures:
     type: image
     weight: 5
@@ -188,6 +192,7 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
+    region: ds_content
   field_tags:
     type: entity_reference_label
     weight: 9
@@ -197,6 +202,7 @@ content:
     third_party_settings:
       ds:
         ds_limit: ''
+    region: ds_content
 hidden:
   comment: true
   links: true
