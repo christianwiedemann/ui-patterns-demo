@@ -29,16 +29,17 @@
     "drupal/ds": "~3",
     "drupal/field_group": "~1",
     "drupal/coffee": "~1",
+    "drupal/features": "3.5",
     "drupal/panels": "~4",
-    "drupal/features": "3.2",
     "drupal/page_manager": "~4",
     "drupal/paragraphs": "~1",
     "drupal/token": "~1",
     "drupal/bootstrap": "3.1",
-    "drupal/ui_patterns": "1.x-dev"
+    "drupal/ui_patterns": "dev-44-ui-patterns-settings"
   },
   "require-dev": {
     "behat/mink": "~1.7",
+    "drush/drush": "~8",
     "behat/mink-goutte-driver": "~1.2",
     "jcalderonzumba/gastonjs": "~1.0.2",
     "jcalderonzumba/mink-phantomjs-driver": "~0.3.1",

@@ -10,7 +10,6 @@ dependencies:
   - comment
   - ds
   - entity_reference_revisions
-  - features_ui
   - field
   - field_group
   - file

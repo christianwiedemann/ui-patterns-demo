@@ -1,6 +1,11 @@
 blockquote:
   label: Blockquote
   description: Display a quote with attribution information.
+  settings:
+    modifier:
+      type: textfield
+      label: Modifier
+      description: Add modifier here
   fields:
     quote:
       type: text
@@ -16,6 +21,32 @@ blockquote:
 card:
   label: Card
   description: A card component.
+  variants:
+    blue:
+      label: "Red"
+      settings:
+        modifier: "red"
+  settings:
+    modifier:
+      type: textfield
+      label: Modifier
+      description: Add modifier here
+    boxes:
+      type: checkbox
+      label: Checkboxes
+      description: Checkboxes
+      options:
+        key-1: Box 1
+        key-2: Box 2
+      default_value: key-1
+    select:
+      type: select
+      label: Select
+      description: Select
+      options:
+        key-1: Box 1
+        key-2: Box 2
+      default_value: key-1
   fields:
     image:
       type: image
